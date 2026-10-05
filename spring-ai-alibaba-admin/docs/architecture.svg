@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 840" width="1200" height="840" font-family="'PingFang SC','Microsoft YaHei','Noto Sans CJK SC','Source Han Sans SC',Helvetica,Arial,sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
+    </marker>
+    <style>
+      .layer { stroke-width: 1.2; }
+      .box { fill: #ffffff; stroke-width: 1.2; }
+      .lbl { font-size: 17px; font-weight: 700; fill: #1e293b; }
+      .t { font-size: 15px; font-weight: 700; fill: #0f172a; }
+      .d { font-size: 12.5px; fill: #475569; }
+      .edge { stroke: #475569; stroke-width: 1.5; fill: none; }
+      .elbl { font-size: 12px; fill: #334155; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="840" fill="#ffffff"/>
+
+  <text x="40" y="42" font-size="22" font-weight="700" fill="#0f172a">Spring AI Alibaba Admin（Agent Studio）架构图</text>
+
+  <!-- ========== 前端层 ========== -->
+  <rect class="layer" x="40" y="65" width="870" height="125" rx="10" fill="#eff6ff" stroke="#93c5fd"/>
+  <text class="lbl" x="85" y="122" text-anchor="middle">前端层</text>
+  <text class="d" x="85" y="142" text-anchor="middle">frontend/</text>
+
+  <rect class="box" x="150" y="80" width="290" height="95" rx="8" stroke="#60a5fa"/>
+  <text class="t" x="165" y="106">packages/main</text>
+  <text class="d" x="165" y="130">Agent Studio 主控制台（React + Tailwind），</text>
+  <text class="d" x="165" y="150">承载 Prompt、数据集、评估、实验等页面</text>
+
+  <rect class="box" x="455" y="80" width="230" height="95" rx="8" stroke="#60a5fa"/>
+  <text class="t" x="470" y="106">packages/spark-flow</text>
+  <text class="d" x="470" y="130">工作流画布渲染引擎，</text>
+  <text class="d" x="470" y="150">拖拽式编排 Agent 流程</text>
+
+  <rect class="box" x="700" y="80" width="190" height="95" rx="8" stroke="#60a5fa"/>
+  <text class="t" x="715" y="106">packages/spark-i18n</text>
+  <text class="d" x="715" y="130">国际化文案库</text>
+  <text class="d" x="715" y="150">（中 / 英）</text>
+
+  <!-- ========== 后端层 ========== -->
+  <rect class="layer" x="40" y="230" width="870" height="240" rx="10" fill="#ecfdf5" stroke="#6ee7b7"/>
+  <text class="lbl" x="85" y="342" text-anchor="middle">后端层</text>
+  <text class="d" x="85" y="362" text-anchor="middle">Spring Boot 3</text>
+
+  <rect class="box" x="150" y="245" width="740" height="90" rx="8" stroke="#34d399"/>
+  <text class="t" x="165" y="271">admin-server-start（可启动应用，:8080）</text>
+  <text class="d" x="165" y="295">Admin 主服务：Prompt、数据集、评估器、实验、可观测、模型配置 6 组 REST 接口及业务实现，</text>
+  <text class="d" x="165" y="315">负责 Prompt 发布到 Nacos、从 Elasticsearch 查询 Trace、调用大模型执行调试与评估实验</text>
+
+  <rect class="box" x="150" y="350" width="230" height="105" rx="8" stroke="#34d399"/>
+  <text class="t" x="165" y="376">admin-server-openapi</text>
+  <text class="d" x="165" y="400">对外开放的 OpenAPI 层，</text>
+  <text class="d" x="165" y="420">提供 Chat 等调用接口与鉴权拦截</text>
+
+  <rect class="box" x="395" y="350" width="290" height="105" rx="8" stroke="#34d399"/>
+  <text class="t" x="410" y="376">admin-server-core</text>
+  <text class="d" x="410" y="400">共享核心能力：模型接入（LLM / Embedding /</text>
+  <text class="d" x="410" y="420">Rerank）、RAG、Agent 与工作流、</text>
+  <text class="d" x="410" y="440">MyBatis 持久化、Redis / RocketMQ 封装</text>
+
+  <rect class="box" x="700" y="350" width="190" height="105" rx="8" stroke="#34d399"/>
+  <text class="t" x="715" y="376">admin-server-runtime</text>
+  <text class="d" x="715" y="400">公共领域模型、枚举、</text>
+  <text class="d" x="715" y="420">异常与工具类，</text>
+  <text class="d" x="715" y="440">供各模块共用</text>
+
+  <!-- ========== 中间件层 ========== -->
+  <rect class="layer" x="40" y="510" width="870" height="130" rx="10" fill="#fff7ed" stroke="#fdba74"/>
+  <text class="lbl" x="85" y="580" text-anchor="middle">中间件层</text>
+
+  <rect class="box" x="150" y="525" width="160" height="100" rx="8" stroke="#fb923c"/>
+  <text class="t" x="165" y="551">Nacos</text>
+  <text class="d" x="165" y="575">Prompt 发布中心，</text>
+  <text class="d" x="165" y="595">向 Agent 应用动态下发</text>
+
+  <rect class="box" x="325" y="525" width="160" height="100" rx="8" stroke="#fb923c"/>
+  <text class="t" x="340" y="551">RocketMQ</text>
+  <text class="d" x="340" y="575">异步任务消息，</text>
+  <text class="d" x="340" y="595">如知识库文档索引</text>
+
+  <rect class="box" x="500" y="525" width="160" height="100" rx="8" stroke="#fb923c"/>
+  <text class="t" x="515" y="551">Redis</text>
+  <text class="d" x="515" y="575">缓存与分布式锁</text>
+  <text class="d" x="515" y="595">（Redisson）</text>
+
+  <rect class="box" x="675" y="525" width="160" height="100" rx="8" stroke="#fb923c"/>
+  <text class="t" x="690" y="551">Elasticsearch</text>
+  <text class="d" x="690" y="575">Trace / Span 存储与检索，</text>
+  <text class="d" x="690" y="595">兼作 RAG 向量库</text>
+
+  <!-- ========== 数据库层 ========== -->
+  <rect class="layer" x="40" y="680" width="870" height="100" rx="10" fill="#f5f3ff" stroke="#c4b5fd"/>
+  <text class="lbl" x="85" y="736" text-anchor="middle">数据库层</text>
+
+  <rect class="box" x="150" y="695" width="740" height="70" rx="8" stroke="#a78bfa"/>
+  <text class="t" x="165" y="723">MySQL 8</text>
+  <text class="d" x="165" y="746">业务元数据持久化：Prompt 及版本、数据集、评估器、实验与结果、模型配置等（Druid 连接池 + MyBatis）</text>
+
+  <!-- ========== 外部系统 ========== -->
+  <text class="lbl" x="1050" y="218" text-anchor="middle">外部系统</text>
+
+  <rect class="box" x="940" y="230" width="220" height="110" rx="8" stroke="#94a3b8" stroke-dasharray="5 4"/>
+  <text class="t" x="955" y="256">大模型提供商</text>
+  <text class="d" x="955" y="280">DashScope / OpenAI /</text>
+  <text class="d" x="955" y="300">DeepSeek，用于 Prompt 调试</text>
+  <text class="d" x="955" y="320">与评估实验</text>
+
+  <rect class="box" x="940" y="360" width="220" height="110" rx="8" stroke="#94a3b8" stroke-dasharray="5 4"/>
+  <text class="t" x="955" y="386">业务 AI Agent 应用</text>
+  <text class="d" x="955" y="410">从 Nacos 拉取 Prompt，</text>
+  <text class="d" x="955" y="430">通过 OTLP 上报 Trace，</text>
+  <text class="d" x="955" y="450">在 Admin 中被观测与评估</text>
+
+  <!-- ========== 周边基础设施（概括） ========== -->
+  <rect x="940" y="510" width="220" height="270" rx="10" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="6 4"/>
+  <text class="t" x="955" y="540">周边基础设施</text>
+  <text class="d" x="955" y="562">日志 · 监控 · 配置</text>
+  <text class="d" x="955" y="600">OpenTelemetry / OTLP 采集</text>
+  <text class="d" x="955" y="620">（LoongCollector :4318）</text>
+  <text class="d" x="955" y="650">Kibana 日志与 Trace 查看</text>
+  <text class="d" x="955" y="680">application.yml、</text>
+  <text class="d" x="955" y="700">model-config.yaml 配置</text>
+  <text class="d" x="955" y="730">Docker Compose / K8s 部署</text>
+
+  <!-- ========== 连线 ========== -->
+  <line class="edge" x1="295" y1="175" x2="295" y2="243" marker-end="url(#arrow)"/>
+  <text class="elbl" x="305" y="214">HTTP REST / SSE</text>
+
+  <line class="edge" x1="540" y1="455" x2="540" y2="523" marker-end="url(#arrow)"/>
+  <text class="elbl" x="550" y="494">读写</text>
+
+  <line class="edge" x1="862" y1="455" x2="862" y2="693" marker-end="url(#arrow)"/>
+  <text class="elbl" x="822" y="662">SQL</text>
+
+  <line class="edge" x1="890" y1="285" x2="938" y2="285" marker-end="url(#arrow)"/>
+  <text class="elbl" x="893" y="277">调用</text>
+
+  <line class="edge" x1="1050" y1="470" x2="1050" y2="508" marker-end="url(#arrow)"/>
+  <text class="elbl" x="1058" y="494">OTLP Trace</text>
+
+  <text x="40" y="820" font-size="11.5" fill="#94a3b8">依据 spring-ai-alibaba-admin 的 README、各模块 pom 与目录结构整理 · 实线为调用 / 读写，虚线框为外部系统与周边设施概括</text>
+</svg>
